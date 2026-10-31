@@ -162,7 +162,6 @@ function Home() {
             <article className="product-card" key={product.number}>
               <figure className={`product-card__image ${product.imageClass}`}>
                 <img src={product.image} alt={product.alt} loading="lazy" />
-                <figcaption>{product.number} / 03</figcaption>
               </figure>
               <div className="product-card__meta">
                 <span>{product.category}</span>

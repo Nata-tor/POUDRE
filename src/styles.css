@@ -461,17 +461,6 @@ main {
   object-position: 64% center;
 }
 
-.product-card__image figcaption {
-  position: absolute;
-  right: 11px;
-  bottom: 11px;
-  padding: 5px 8px;
-  background: rgb(247 241 232 / 87%);
-  color: var(--color-ink-soft);
-  font-size: 8px;
-  letter-spacing: 0.12em;
-}
-
 .product-card__meta {
   display: flex;
   justify-content: space-between;
