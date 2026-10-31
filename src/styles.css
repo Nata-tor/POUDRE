@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f3ebdf;
+  --color-paper-deep: #e7dccb;
+  --color-ink: #5c4e40;
+  --color-ink-soft: #8a7866;
+  --color-mist: #a9c0cc;
+  --color-mist-deep: #7f9aab;
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --tracking-brand: 0.42em;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
