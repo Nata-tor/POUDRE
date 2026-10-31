@@ -88,7 +88,6 @@ function Home() {
               alt="Первая коллекция Poudre: крем, футболка и блокнот в общей цветовой гамме"
               fetchPriority="high"
             />
-            <span className="hero__edition">ÉDITION Nº 01</span>
           </div>
           <figcaption className="hero__caption">
             <span>ТРИ ФОРМЫ. ОДИН ВИЗУАЛЬНЫЙ ЯЗЫК.</span>

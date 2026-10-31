@@ -244,18 +244,6 @@ main {
   object-position: center;
 }
 
-.hero__edition {
-  position: absolute;
-  right: 24px;
-  bottom: 23px;
-  z-index: 1;
-  padding: 6px 9px;
-  background: rgb(247 241 232 / 88%);
-  color: var(--color-ink-soft);
-  font-size: 8px;
-  letter-spacing: 0.16em;
-}
-
 .hero__caption {
   display: flex;
   justify-content: space-between;
