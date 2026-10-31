@@ -21,6 +21,7 @@
  */
 import { spawn } from "node:child_process";
 import { readFileSync, realpathSync } from "node:fs";
+import { createRequire } from "node:module";
 import { constants as osConstants } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -28,6 +29,24 @@ import { fileURLToPath } from "node:url";
 export const APP_ENV_REL_PATH = ".grok/app-env.json";
 
 const VITE_PREFIX = "VITE_";
+const require = createRequire(import.meta.url);
+
+/** Launch the local Vite CLI through Node instead of the platform-specific shim. */
+export function resolveCommand(command, args) {
+  if (command !== "vite") return { command, args };
+
+  const packagePath = require.resolve("vite/package.json");
+  const vitePackage = JSON.parse(readFileSync(packagePath, "utf8"));
+  const viteBin = vitePackage.bin?.vite;
+  if (typeof viteBin !== "string") {
+    throw new Error("The installed Vite package does not declare its CLI entry point.");
+  }
+
+  return {
+    command: process.execPath,
+    args: [join(dirname(packagePath), viteBin), ...args],
+  };
+}
 
 /**
  * Parse an app-env document, keeping only `VITE_`-prefixed string entries.
@@ -111,7 +130,14 @@ function main(argv) {
     process.exit(2);
   }
   const env = mergeAppEnv(readAppEnv(projectRoot()), process.env);
-  const child = spawn(command, args, { stdio: "inherit", env });
+  let executable;
+  try {
+    executable = resolveCommand(command, args);
+  } catch (err) {
+    console.error(`[with-app-env] failed to resolve ${command}:`, err?.message || err);
+    process.exit(127);
+  }
+  const child = spawn(executable.command, executable.args, { stdio: "inherit", env });
   // The dev server is long-running and is stopped by signalling this wrapper.
   for (const signal of ["SIGINT", "SIGTERM", "SIGHUP"]) {
     process.on(signal, () => child.kill(signal));
