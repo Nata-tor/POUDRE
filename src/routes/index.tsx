@@ -1,149 +1,233 @@
-import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({ component: Home });
 
-function Mark({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 160 48" className={className} aria-hidden="true">
-      <circle cx="80" cy="10" r="5.5" fill="#a9c0cc" />
-      <path
-        d="M28 22c18 3 32 4 52 1 20-3 34-2 52 2"
-        fill="none"
-        stroke="#c4b39a"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
+const products = [
+  {
+    number: "01",
+    category: "УХОД",
+    title: "Крем",
+    description:
+      "Прозрачная матовая банка и прохладный голубой акцент. Знак находит место между названием и формой.",
+    image: "/poudre-cream.png",
+    alt: "Матовая банка крема Poudre с голубой крышкой и ботаническим логотипом",
+    imageClass: "product-card__image--cream",
+  },
+  {
+    number: "02",
+    category: "ОДЕЖДА",
+    title: "Футболка",
+    description:
+      "Свободный силуэт в мягком пудровом оттенке. Ветвь и название складываются в единый знак.",
+    image: "/poudre-portrait.png",
+    alt: "Модель в свободной футболке Poudre с ботаническим знаком",
+    imageClass: "product-card__image--portrait",
+  },
+  {
+    number: "03",
+    category: "БУМАГА",
+    title: "Блокнот",
+    description:
+      "Тёплая обложка, чистая плоскость и та же тонкая графика. Логотип звучит тише — и остаётся заметным.",
+    image: "/poudre-notebook.png",
+    alt: "Блокнот Poudre с ботаническим логотипом на обложке",
+    imageClass: "product-card__image--notebook",
+  },
+];
 
 function Home() {
-  const [open, setOpen] = useState(false);
-
   return (
-    <main className="bg-paper text-ink">
-      <section className="flex min-h-[100svh] flex-col items-center justify-center px-6 text-center">
-        <Mark className="mb-2 w-40" />
-        <p className="font-sans text-xs font-light tracking-widest text-ink">POUDRE</p>
-        <p className="mt-10 font-display text-3xl font-normal italic text-ink-soft sm:text-4xl">
-          The first hour.
-        </p>
-      </section>
+    <main>
+      <header className="site-header">
+        <a className="site-header__brand" href="#home" aria-label="Poudre — на главную">
+          <img src="/poudre-logo.png" alt="" />
+        </a>
+        <nav className="site-nav" aria-label="Основная навигация">
+          <a href="#idea">Идея</a>
+          <a href="#collection">Коллекция</a>
+          <a href="#author">Автор</a>
+        </nav>
+        <a
+          className="site-header__contact"
+          href="https://t.me/Nattoro"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Связаться <span aria-hidden="true">↗</span>
+        </a>
+      </header>
 
-      <section className="mx-auto grid min-h-[100svh] max-w-6xl items-center gap-10 px-6 py-24 md:grid-cols-12 md:gap-6">
-        <figure className="md:col-span-7">
-          <img
-            src="/cream.jpg?v=2"
-            alt="A matte cream jar on warm paper"
-            className="w-full object-cover"
-          />
-        </figure>
-        <div className="md:col-span-4 md:col-start-9">
-          <p className="font-sans text-xs font-light tracking-widest text-mist-deep">01</p>
-          <h2 className="mt-4 font-display text-5xl font-normal leading-none text-ink sm:text-6xl">
-            Cream
-          </h2>
-          <p className="mt-6 max-w-xs font-display text-2xl italic leading-snug text-ink-soft">
-            Before anything else.
+      <section className="hero" id="home">
+        <div className="hero__copy">
+          <p className="eyebrow">
+            <span className="eyebrow__index">01</span>
+            КОНЦЕПЦИЯ АЙДЕНТИКИ БРЕНДА
           </p>
-          <p className="mt-6 max-w-sm text-sm font-light leading-relaxed text-ink-soft">
-            The first touch. Skin, before clothes or words. A quiet jar, the color of the morning.
+          <h1>
+            У каждого утра
+            <br />
+            своё <em>начало.</em>
+          </h1>
+          <p className="hero__description">
+            Poudre — идея марки повседневных предметов. Один ботанический знак объединяет три
+            простые формы: уход, одежду и бумагу.
           </p>
-        </div>
-      </section>
-
-      <section className="mx-auto grid min-h-[100svh] max-w-6xl items-center gap-10 px-6 py-24 md:grid-cols-12">
-        <div className="order-2 md:order-1 md:col-span-4">
-          <p className="font-sans text-xs font-light tracking-widest text-mist-deep">02</p>
-          <h2 className="mt-4 font-display text-5xl font-normal leading-none text-ink sm:text-6xl">
-            Cloth
-          </h2>
-          <p className="mt-6 max-w-xs font-display text-2xl italic leading-snug text-ink-soft">
-            One color. Worn and finished.
-          </p>
-          <p className="mt-6 max-w-sm text-sm font-light leading-relaxed text-ink-soft">
-            A single T-shirt in powder beige. The uniform of the hour — nothing else to decide.
-          </p>
-        </div>
-        <figure className="order-1 md:order-2 md:col-span-7 md:col-start-6">
-          <img
-            src="/shirt.jpg?v=2"
-            alt="A woman in a plain powder-beige T-shirt"
-            className="w-full object-cover"
-          />
-        </figure>
-      </section>
-
-      <section className="flex min-h-[90svh] flex-col items-center justify-center px-6 py-24 text-center">
-        <p className="font-sans text-xs font-light tracking-widest text-mist-deep">03</p>
-        <h2 className="mt-4 font-display text-5xl font-normal leading-none text-ink">Paper</h2>
-        <figure className="mt-12 w-full max-w-xl">
-          <img
-            src="/notebook.jpg?v=2"
-            alt="A closed beige notebook seen from above"
-            className="w-full object-cover"
-          />
-        </figure>
-        <p className="mt-10 font-display text-2xl italic text-ink-soft">Then a page.</p>
-      </section>
-
-      <section id="set" className="mx-auto max-w-6xl px-6 py-28">
-        <figure>
-          <img
-            src="/set.jpg?v=2"
-            alt="The morning set: cream jar, folded T-shirt, and notebook"
-            className="w-full object-cover"
-          />
-        </figure>
-        <div className="mt-12 flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-end">
-          <div>
-            <p className="font-display text-4xl italic text-ink sm:text-5xl">The morning set.</p>
-            <p className="mt-3 text-sm font-light text-ink-soft">Cream, cloth, and paper — together.</p>
+          <a className="text-link" href="#collection">
+            Смотреть коллекцию <span aria-hidden="true">↓</span>
+          </a>
+          <div className="hero__signature">
+            <span />
+            <p>Design by TORnata</p>
           </div>
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className="min-h-11 border border-ink bg-ink px-10 text-xs font-light tracking-widest text-paper transition-colors duration-200 hover:bg-transparent hover:text-ink"
-          >
-            BEGIN
-          </button>
+        </div>
+
+        <figure className="hero__visual">
+          <div className="hero__image-frame">
+            <img
+              src="/poudre-collection.png"
+              alt="Первая коллекция Poudre: крем, футболка и блокнот в общей цветовой гамме"
+              fetchPriority="high"
+            />
+            <span className="hero__edition">ÉDITION Nº 01</span>
+          </div>
+          <figcaption className="hero__caption">
+            <span>ТРИ ФОРМЫ. ОДИН ВИЗУАЛЬНЫЙ ЯЗЫК.</span>
+          </figcaption>
+        </figure>
+        <a className="hero__scroll" href="#idea" aria-label="Прокрутить к идее">
+          <span />
+        </a>
+      </section>
+
+      <section className="idea-section" id="idea">
+        <div className="idea-section__heading">
+          <p className="eyebrow">
+            <span className="eyebrow__index">02</span>
+            ИДЕЯ ЗНАКА
+          </p>
+          <h2>
+            Маленький знак.
+            <br />
+            <em>Место для своего начала.</em>
+          </h2>
+        </div>
+        <div className="idea-section__story">
+          <figure className="idea-section__logo">
+            <img src="/poudre-logo.png" alt="Логотип Poudre с ботаническим знаком" loading="lazy" />
+          </figure>
+          <div className="idea-section__copy">
+            <span className="idea-section__rule" />
+            <p>
+              Ботаническая линия напоминает о росте и движении. Не диктует, с чего начинать, а
+              оставляет пространство для собственного выбора.
+            </p>
+            <p className="idea-section__note">
+              ЛОГОТИП РАЗРАБОТАН ПО МОТИВАМ ЗНАКА НА ИЗОБРАЖЕНИЯХ КОЛЛЕКЦИИ
+            </p>
+          </div>
+        </div>
+        <div className="color-story" aria-label="Цвета концепции">
+          <p>ЦВЕТА КОЛЛЕКЦИИ</p>
+          <span className="color-story__swatch color-story__swatch--powder">
+            ПУДРОВЫЙ <span className="color-story__hex">#DCC8B3</span>
+          </span>
+          <span className="color-story__swatch color-story__swatch--blue">
+            ГОЛУБОЙ <span className="color-story__hex">#C5D5D9</span>
+          </span>
+          <span className="color-story__swatch color-story__swatch--ink">
+            ГРАФИТ <span className="color-story__hex">#706F6B</span>
+          </span>
         </div>
       </section>
 
-      <footer className="flex flex-col items-center px-6 pb-24 pt-8 text-center">
-        <Mark className="w-28 opacity-80" />
-        <p className="mt-2 font-sans text-xs font-light tracking-widest text-ink-soft">
-          POUDRE — CREAM, CLOTH, PAPER
+      <section className="collection-section" id="collection">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">
+              <span className="eyebrow__index">03</span>
+              ПЕРВАЯ КОЛЛЕКЦИЯ
+            </p>
+            <h2>
+              Знак в <em>простых формах.</em>
+            </h2>
+          </div>
+          <p className="section-heading__note">
+            Один графический мотив —
+            <br />
+            три разных поверхности.
+          </p>
+        </div>
+
+        <div className="product-grid">
+          {products.map((product) => (
+            <article className="product-card" key={product.number}>
+              <figure className={`product-card__image ${product.imageClass}`}>
+                <img src={product.image} alt={product.alt} loading="lazy" />
+                <figcaption>{product.number} / 03</figcaption>
+              </figure>
+              <div className="product-card__meta">
+                <span>{product.category}</span>
+                <span>POUDRE · ÉDITION I</span>
+              </div>
+              <h3>{product.title}</h3>
+              <p>{product.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="identity-section" aria-labelledby="identity-title">
+        <div className="identity-section__card">
+          <div className="identity-section__copy">
+            <p className="eyebrow">
+              <span className="eyebrow__index">04</span>
+              СИСТЕМА АЙДЕНТИКИ
+            </p>
+            <h2 id="identity-title">
+              Узнаваемость
+              <br />в <em>деталях.</em>
+            </h2>
+            <p>
+              Ботаническая ветвь, спокойная типографика и один голубой оттенок соединяют объекты, не
+              перекрывая их характер.
+            </p>
+            <span className="identity-section__caption">
+              ВЕКТОРНЫЙ ЗНАК · ЦВЕТОВАЯ ПАЛИТРА · ПРИМЕНЕНИЕ
+            </span>
+          </div>
+          <figure className="identity-section__image">
+            <img
+              src="/poudre-collection.png"
+              alt="Логотип Poudre применён на креме, футболке и блокноте в составе одной коллекции"
+              loading="lazy"
+            />
+            <figcaption>ОДНА АЙДЕНТИКА — ТРИ НОСИТЕЛЯ</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <footer className="site-footer" id="author">
+        <a className="site-footer__brand" href="#home" aria-label="Poudre — наверх">
+          <img src="/poudre-logo.png" alt="" loading="lazy" />
+        </a>
+        <div className="site-footer__credit">
+          <p className="eyebrow">АВТОР ПРОЕКТА</p>
+          <p className="site-footer__name">Design by TORnata</p>
+          <a href="https://t.me/tornata_dsgn" target="_blank" rel="noreferrer">
+            Портфолио <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div className="site-footer__services">
+          <p className="eyebrow">НАПРАВЛЕНИЯ</p>
+          <p>UX/UI · Айдентика · Генеративная графика и 3D</p>
+          <a href="https://t.me/Nattoro" target="_blank" rel="noreferrer">
+            Обсудить проект в Telegram <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <p className="site-footer__disclaimer">
+          POUDRE — КОНЦЕПЦИЯ АЙДЕНТИКИ И ПЕРВОЙ КОЛЛЕКЦИИ. ПРОЕКТ ДЛЯ ПОРТФОЛИО.
         </p>
       </footer>
-
-      {open && (
-        <div className="fixed inset-0 z-20 flex items-end justify-center bg-ink/30 p-4 sm:items-center">
-          <div
-            role="dialog"
-            aria-labelledby="begin-title"
-            className="w-full max-w-md bg-paper px-8 py-10 text-ink shadow-none"
-          >
-            <p className="text-xs font-light tracking-widest text-mist-deep">THE SET</p>
-            <h3 id="begin-title" className="mt-3 font-display text-4xl italic">
-              Your morning is held.
-            </h3>
-            <ul className="mt-6 space-y-2 text-sm font-light text-ink-soft">
-              <li>Cream — the first touch</li>
-              <li>Cloth — one color</li>
-              <li>Paper — then a page</li>
-            </ul>
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              className="mt-8 min-h-11 w-full border border-ink text-xs tracking-widest"
-            >
-              CLOSE
-            </button>
-          </div>
-        </div>
-      )}
     </main>
   );
 }

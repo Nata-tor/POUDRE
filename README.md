@@ -1,22 +1,22 @@
-# POUDRE
+# POUDRE — предметы для своего начала
 
-**Open the live landing page:** [poudre-seven.vercel.app](https://poudre-seven.vercel.app)
+**Концепция айдентики и первой коллекции.** Design by TORnata.
 
-POUDRE is a quiet morning ritual: cream, cloth, and paper.
+Ботанический знак объединяет три повседневные формы: крем, одежду и бумагу.
+Легенда коллекции — у каждого утра своё начало.
 
 ## Repository and website
 
-- **Website:** https://poudre-seven.vercel.app
-- **GitHub repository (browse the source):** https://github.com/Nata-tor/POUDRE
-- **Clone URL (for Git, not a website):** `https://github.com/Nata-tor/POUDRE.git`
+- **Landing page:** https://poudre-seven.vercel.app
+- **Portfolio:** https://t.me/tornata_dsgn
+- **Contact / orders:** https://t.me/Nattoro
+- **GitHub repository:** https://github.com/Nata-tor/POUDRE
 
-The `.git` URL is for Git clients to download the project source. To view the
-files in a browser, open the repository link above. To visit the landing page,
-open the Vercel website link.
+POUDRE is a conceptual project created for a design portfolio, not a live shop.
 
 ## Run locally
 
-Requires Node.js 22.12 or later.
+Requires Node.js 22.12 or later. For the project files and local development:
 
 ```powershell
 npm ci
